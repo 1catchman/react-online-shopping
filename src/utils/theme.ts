@@ -1,13 +1,10 @@
 import { createTheme } from '@mui/material/styles';
+import { grey } from '@mui/material/colors';
 
 export const theme = createTheme({
-  components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          padding: 0
-        }
-      }
+  palette: {
+    primary: {
+      main: grey[800]
     }
   }
 });

@@ -7,6 +7,9 @@ import {
   Typography,
   Button
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import leftBannerImage from '../images/left-banner-image.jpg';
 import rightBannerImageFirst from '../images/baner-right-image-01.jpg';
 import rightBannerImageSecond from '../images/baner-right-image-02.jpg';
@@ -86,10 +89,25 @@ const CustomButton = styled(Button)({
 });
 
 export default function BannersComponent() {
+  const theme = useTheme();
+  const mdBreakpointUp = useMediaQuery(theme.breakpoints.up('md'));
+  const mlBreakpointBetween = useMediaQuery(
+    theme.breakpoints.between('md', 'lg')
+  );
+  const smBreakpointDown = useMediaQuery(
+    theme.breakpoints.down('sm')
+  );
+
   return (
-    <Grid container columnSpacing={0.6} sx={{ px: 4 }}>
+    <Grid container columnSpacing={0.1} sx={{ px: 4 }}>
       <Grid item md sx={{ mx: 'auto' }}>
-        <Box sx={{ my: 1.9, position: 'relative' }}>
+        <Box
+          sx={{
+            my: 2,
+            position: 'relative',
+            mb: `${mdBreakpointUp ? null : '-18px'}`
+          }}
+        >
           <InnerBox sx={{ left: '10%', pr: 3 }}>
             <Typography
               gutterBottom
@@ -110,7 +128,13 @@ export default function BannersComponent() {
               Purchase Now!
             </CustomButton>
           </InnerBox>
-          <Img src={leftBannerImage} alt="Left Banner" />
+          <Img
+            src={leftBannerImage}
+            alt="Left Banner"
+            style={
+              mdBreakpointUp ? { width: '99.7%' } : { width: '100%' }
+            }
+          />
         </Box>
       </Grid>
       <Grid item md xs={12} sx={{ mx: 'auto' }}>
@@ -138,15 +162,17 @@ export default function BannersComponent() {
                     left: '50%'
                   }}
                 >
-                  <Typography
-                    gutterBottom
-                    variant="h4"
-                    component="div"
-                    fontWeight={'700'}
-                    sx={{ mb: '15px' }}
-                  >
-                    {item.title}
-                  </Typography>
+                  {smBreakpointDown ? null : (
+                    <Typography
+                      gutterBottom
+                      variant={mlBreakpointBetween ? 'h5' : 'h4'}
+                      component="div"
+                      fontWeight={'700'}
+                      sx={{ mb: '15px' }}
+                    >
+                      {item.title}
+                    </Typography>
+                  )}
                   <Typography
                     variant="body2"
                     component="div"
@@ -154,7 +180,14 @@ export default function BannersComponent() {
                   >
                     {item.description}
                   </Typography>
-                  <CustomButton variant="outlined">
+                  <CustomButton
+                    variant="outlined"
+                    style={
+                      mlBreakpointBetween || smBreakpointDown
+                        ? { padding: '8px 16px', fontSize: '11px' }
+                        : {}
+                    }
+                  >
                     Discover More
                   </CustomButton>
                 </InnerBox>
