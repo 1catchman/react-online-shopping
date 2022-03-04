@@ -72,7 +72,7 @@ const Img = styled('img')({
 });
 
 const CustomButton = styled(Button)({
-  fontSize: '14px',
+  fontSize: '13px',
   textTransform: 'none',
   color: '#fff',
   border: '1px solid #fff',
@@ -81,6 +81,7 @@ const CustomButton = styled(Button)({
   display: 'inline-block',
   fontWeight: '500',
   transition: 'all .3s',
+  fontFamily: 'Poppins',
   '&:hover': {
     backgroundColor: '#fff',
     color: '#2a2a2a',
@@ -99,8 +100,17 @@ export default function BannersComponent() {
   );
 
   return (
-    <Grid container columnSpacing={0.1} sx={{ px: 4 }}>
-      <Grid item md sx={{ mx: 'auto' }}>
+    <Grid
+      container
+      columnSpacing={0.1}
+      sx={{
+        mx: 'auto',
+        px: 2,
+        pb: 10,
+        maxWidth: mdBreakpointUp ? null : 790
+      }}
+    >
+      <Grid item md>
         <Box
           sx={{
             my: 2,

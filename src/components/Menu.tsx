@@ -126,6 +126,7 @@ export default function BasicMenu({ appBarRef }: BasicMenuProps) {
       >
         <HanburgerIcon />
       </HamburgerButton>
+
       <StyledMenu
         id="basic-menu"
         anchorEl={anchorEl}
