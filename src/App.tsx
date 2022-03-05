@@ -10,6 +10,8 @@ import HeaderComponent from './components/Header';
 import BannersComponent from './components/Banners';
 import ProductsComponent from './components/Products';
 import SocialMediaComponent from './components/SocialMedia';
+import ContactComponent from './components/Contact';
+import FooterComponent from './components/Footer';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <BannersComponent />
           <ProductsComponent />
           <SocialMediaComponent />
+          <ContactComponent />
+          <FooterComponent />
         </Box>
       </Container>
     </ThemeProvider>

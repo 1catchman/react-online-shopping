@@ -114,6 +114,7 @@ export default function ProductsComponent() {
           slide={1}
           transition={0.5}
           swiping={true}
+          swipeOn={0}
           rightArrow={
             <CarouselButton area-label="rightarrow" size="small">
               <ArrowForwardIosIcon />
@@ -139,7 +140,10 @@ export default function ProductsComponent() {
             lg={6}
             sx={{ px: 3, textAlign: 'justify' }}
           >
-            <PoppinsTypography variant="h3" sx={{ fontWeight: 700 }}>
+            <PoppinsTypography
+              variant="h3"
+              sx={{ fontWeight: 700, textAlign: 'start' }}
+            >
               Explore Our Products
             </PoppinsTypography>
             <PoppinsTypography

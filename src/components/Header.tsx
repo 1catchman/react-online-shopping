@@ -1,14 +1,14 @@
+import { useRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import logo from '../images/logo.png';
 import { styled } from '@mui/styles';
 import BasicMenu from './Menu';
-import { useRef } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import logo from '../images/logo.png';
 
 const NavBox = styled(Box)({
   '& button:not(:last-child)': {
