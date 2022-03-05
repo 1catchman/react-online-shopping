@@ -94,7 +94,7 @@ export default function SocialMediaComponent() {
         >
           {items.map((item) => {
             return (
-              <ImageListItem>
+              <ImageListItem key={item.name}>
                 <HoverBox>
                   <InnerBox sx={{ p: '0px 20px' }}>
                     <Typography variant="subtitle1" sx={{ mb: 0.5 }}>

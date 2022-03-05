@@ -20,6 +20,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import StarIcon from '@mui/icons-material/Star';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import menProductImage01 from '../images/men-01.jpg';
 import firstExploreImage from '../images/explore-image-01.jpg';
@@ -68,6 +71,23 @@ const CarouselButton = styled(IconButton)({
   }
 });
 
+const CardButton = styled(IconButton)({
+  padding: 8,
+  color: '#2a2a2a',
+  borderRadius: 0,
+  border: '1px solid #fff',
+  backgroundColor: '#fff',
+  transition: 'all .3s',
+  transform: 'translateY(10%)',
+  '&:hover': {
+    transform: 'translateY(0)',
+    color: '#fff',
+    borderRadius: 0,
+    border: '1px solid #2a2a2a',
+    backgroundColor: '#2a2a2a'
+  }
+});
+
 const CustomButton = styled(Button)({
   fontSize: '13px',
   textTransform: 'none',
@@ -83,6 +103,25 @@ const CustomButton = styled(Button)({
   '&:hover': {
     color: '#fff',
     backgroundColor: '#2a2a2a'
+  }
+});
+
+const HoverBox = styled(Box)({
+  display: 'grid',
+  justifyContent: 'center',
+  alignItems: 'end',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  left: 0,
+  bottom: 0,
+  backgroundColor: 'transparent',
+  opacity: 0,
+  visibility: 'visible',
+  transition: 'all 0.5s',
+  '&:hover': {
+    opacity: 1
   }
 });
 
@@ -114,7 +153,7 @@ export default function ProductsComponent() {
           slide={1}
           transition={0.5}
           swiping={true}
-          swipeOn={0}
+          swipeOn={0.1}
           rightArrow={
             <CarouselButton area-label="rightarrow" size="small">
               <ArrowForwardIosIcon />
@@ -272,22 +311,36 @@ export default function ProductsComponent() {
   );
 }
 
-function CarouselItem(props: any) {
+function CarouselItem({ props }: any) {
   return (
     <Card
       sx={{ maxWidth: 350, borderRadius: 0, mx: 1 }}
       elevation={0}
     >
-      <CardMedia
-        component="img"
-        alt="Men Product"
-        image={menProductImage01}
-        sx={{ mb: 2, pointerEvents: 'none', flexGrow: 1 }}
-      />
+      <Box sx={{ position: 'relative' }}>
+        <HoverBox>
+          <CardButton area-label="openproduct" size="small">
+            <VisibilityIcon />
+          </CardButton>
+          <CardButton area-label="favouriteproduct" size="small">
+            <StarIcon />
+          </CardButton>
+          <CardButton area-label="addproduct" size="small">
+            <ShoppingCartIcon />
+          </CardButton>
+        </HoverBox>
+        <CardMedia
+          component="img"
+          alt="Men Product"
+          image={menProductImage01}
+          sx={{ mb: 2, pointerEvents: 'none', flexGrow: 1 }}
+        />
+      </Box>
       <Grid
         container
         justifyContent="space-between"
         alignItems="center"
+        sx={{ zIndex: 10 }}
       >
         <Grid item>
           <PoppinsTypography

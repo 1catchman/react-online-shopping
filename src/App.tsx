@@ -1,17 +1,11 @@
-import './App.css';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/styles';
 import { theme } from './utils/theme';
-
-//Components
+import { CssBaseline, Container } from '@mui/material';
+import { Routes, Route } from 'react-router-dom';
 import HeaderComponent from './components/Header';
-import BannersComponent from './components/Banners';
-import ProductsComponent from './components/Products';
-import SocialMediaComponent from './components/SocialMedia';
-import ContactComponent from './components/Contact';
 import FooterComponent from './components/Footer';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -20,16 +14,14 @@ function App() {
       <Container
         disableGutters
         maxWidth={false}
-        sx={{ overflow: 'hidden' }}
+        sx={{ overflowX: 'hidden' }}
       >
-        <Box>
-          <HeaderComponent />
-          <BannersComponent />
-          <ProductsComponent />
-          <SocialMediaComponent />
-          <ContactComponent />
-          <FooterComponent />
-        </Box>
+        <HeaderComponent />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+        </Routes>
+        <FooterComponent />
       </Container>
     </ThemeProvider>
   );

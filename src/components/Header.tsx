@@ -1,17 +1,24 @@
 import { useRef } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { styled } from '@mui/styles';
-import BasicMenu from './Menu';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  Container,
+  useMediaQuery
+} from '@mui/material/';
+import RouterLink from './RouterLink';
 import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled } from '@mui/styles';
+
+import BasicMenu from './Menu';
 import logo from '../images/logo.png';
 
 const NavBox = styled(Box)({
   '& button:not(:last-child)': {
+    marginRight: 15
+  },
+  '& a:not(:last-child)': {
     marginRight: 15
   }
 });
@@ -22,7 +29,7 @@ const CustomButton = styled(Button)({
   textTransform: 'capitalize',
   letterSpacing: 1,
   fontWeight: '600',
-  fontSize: 15,
+  fontSize: 16,
   '&:hover': {
     backgroundColor: '#fafafa',
     color: '#616161'
@@ -53,10 +60,15 @@ export default function HeaderComponent() {
           </Box>
           {matches ? (
             <NavBox>
-              <CustomButton variant="text">Home</CustomButton>
+              <RouterLink to="/">
+                <CustomButton variant="text">Home</CustomButton>
+              </RouterLink>
               <CustomButton variant="text">Men's</CustomButton>
               <CustomButton variant="text">Women's</CustomButton>
               <CustomButton variant="text">Kid's</CustomButton>
+              <RouterLink to="/about">
+                <CustomButton variant="text">About Us</CustomButton>
+              </RouterLink>
             </NavBox>
           ) : (
             <BasicMenu appBarRef={appBarElement} />

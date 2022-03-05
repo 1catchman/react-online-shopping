@@ -165,7 +165,7 @@ export default function ContactComponent() {
             >
               {items.map((item) => {
                 return (
-                  <Box>
+                  <Box key={item.title}>
                     <PoppinsTypography
                       variant="subtitle1"
                       sx={{ fontWeight: 700 }}

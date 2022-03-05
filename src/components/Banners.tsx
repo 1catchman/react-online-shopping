@@ -4,11 +4,11 @@ import {
   Grid,
   ImageList,
   ImageListItem,
-  Typography,
   Button
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { PoppinsTypography } from '../utils/PoppinsTypography';
 
 import leftBannerImage from '../images/left-banner-image.jpg';
 import rightBannerImageFirst from '../images/baner-right-image-01.jpg';
@@ -119,21 +119,19 @@ export default function BannersComponent() {
           }}
         >
           <InnerBox sx={{ left: '10%', pr: 3 }}>
-            <Typography
+            <PoppinsTypography
               gutterBottom
               variant="h2"
-              component="div"
-              fontWeight={'700'}
+              sx={{ fontWeight: 700 }}
             >
               We Are Hexashop
-            </Typography>
-            <Typography
+            </PoppinsTypography>
+            <PoppinsTypography
               variant="subtitle1"
-              component="div"
               sx={{ mb: '30px' }}
             >
               Custom, responsive &amp; adaptive Material-UI Template
-            </Typography>
+            </PoppinsTypography>
             <CustomButton variant="outlined">
               Purchase Now!
             </CustomButton>
@@ -152,17 +150,16 @@ export default function BannersComponent() {
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
               <InnerBox sx={{ width: '100%', textAlign: 'center' }}>
-                <Typography
+                <PoppinsTypography
                   gutterBottom
                   variant="h4"
-                  component="div"
-                  fontWeight={'700'}
+                  sx={{ fontWeight: 700 }}
                 >
                   {item.title}
-                </Typography>
-                <Typography variant="subtitle1" component="div">
+                </PoppinsTypography>
+                <PoppinsTypography variant="subtitle1">
                   {item.description}
-                </Typography>
+                </PoppinsTypography>
               </InnerBox>
               <HoverBox>
                 <InnerBox
@@ -173,23 +170,20 @@ export default function BannersComponent() {
                   }}
                 >
                   {smBreakpointDown ? null : (
-                    <Typography
+                    <PoppinsTypography
                       gutterBottom
                       variant={mlBreakpointBetween ? 'h5' : 'h4'}
-                      component="div"
-                      fontWeight={'700'}
-                      sx={{ mb: '15px' }}
+                      sx={{ mb: '15px', fontWeight: 700 }}
                     >
                       {item.title}
-                    </Typography>
+                    </PoppinsTypography>
                   )}
-                  <Typography
+                  <PoppinsTypography
                     variant="body2"
-                    component="div"
                     sx={{ p: '0px 20px', mb: '20px' }}
                   >
                     {item.description}
-                  </Typography>
+                  </PoppinsTypography>
                   <CustomButton
                     variant="outlined"
                     style={
