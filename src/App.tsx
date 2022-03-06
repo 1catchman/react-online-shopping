@@ -6,6 +6,7 @@ import HeaderComponent from './components/Header';
 import FooterComponent from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import ProductsPage from './pages/ProductsPage';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <HeaderComponent />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/products" element={<ProductsPage />} />
         </Routes>
         <FooterComponent />
       </Container>

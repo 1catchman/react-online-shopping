@@ -69,6 +69,9 @@ export default function HeaderComponent() {
               <RouterLink to="/about">
                 <CustomButton variant="text">About Us</CustomButton>
               </RouterLink>
+              <RouterLink to="/products">
+                <CustomButton variant="text">Products</CustomButton>
+              </RouterLink>
             </NavBox>
           ) : (
             <BasicMenu appBarRef={appBarElement} />

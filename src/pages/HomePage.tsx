@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import BannersComponent from '../components/Banners';
 import ProductsComponent from '../components/Products';
 import SocialMediaComponent from '../components/SocialMedia';
-import ContactComponent from '../components/Contact';
+import SubscribeComponent from '../components/Subscribe';
 
 export default function HomePage() {
   return (
@@ -12,7 +12,7 @@ export default function HomePage() {
       <BannersComponent />
       <ProductsComponent />
       <SocialMediaComponent />
-      <ContactComponent />
+      <SubscribeComponent />
     </Box>
   );
 }

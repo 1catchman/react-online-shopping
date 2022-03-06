@@ -81,7 +81,7 @@ const SendButton = styled(LoadingButton)({
   }
 });
 
-export default function ContactComponent() {
+export default function SubscribeComponent() {
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
   const smBreakpointDown = useMediaQuery(

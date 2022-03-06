@@ -1,10 +1,7 @@
 import {
   Container,
   Box,
-  Card,
-  Rating,
   Grid,
-  CardMedia,
   Stack,
   ImageList,
   ImageListItem,
@@ -16,44 +13,15 @@ import { PoppinsTypography } from '../utils/PoppinsTypography';
 import { styled } from '@mui/system';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import ProductsItem from './ProductsItem';
+import { products } from '../data/products';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import StarIcon from '@mui/icons-material/Star';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-import menProductImage01 from '../images/men-01.jpg';
 import firstExploreImage from '../images/explore-image-01.jpg';
 import secondExploreImage from '../images/explore-image-02.jpg';
-
-const items = [
-  {
-    name: 'Name #1',
-    description: 'Probably the most random thing you have ever seen!'
-  },
-  {
-    name: 'Name #2',
-    description: 'Hello World!'
-  },
-  {
-    name: 'Name #3',
-    description: 'Hello World!'
-  },
-  {
-    name: 'Name #4',
-    description: 'Hello World!'
-  },
-  {
-    name: 'Name #5',
-    description: 'Hello World!'
-  },
-  {
-    name: 'Name #6',
-    description: 'Hello World!'
-  }
-];
 
 const Img = styled('img')({
   width: '100%',
@@ -68,23 +36,6 @@ const CarouselButton = styled(IconButton)({
   opacity: 0.6,
   '&:hover': {
     opacity: 1
-  }
-});
-
-const CardButton = styled(IconButton)({
-  padding: 8,
-  color: '#2a2a2a',
-  borderRadius: 0,
-  border: '1px solid #fff',
-  backgroundColor: '#fff',
-  transition: 'all .3s',
-  transform: 'translateY(10%)',
-  '&:hover': {
-    transform: 'translateY(0)',
-    color: '#fff',
-    borderRadius: 0,
-    border: '1px solid #2a2a2a',
-    backgroundColor: '#2a2a2a'
   }
 });
 
@@ -103,25 +54,6 @@ const CustomButton = styled(Button)({
   '&:hover': {
     color: '#fff',
     backgroundColor: '#2a2a2a'
-  }
-});
-
-const HoverBox = styled(Box)({
-  display: 'grid',
-  justifyContent: 'center',
-  alignItems: 'end',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  left: 0,
-  bottom: 0,
-  backgroundColor: 'transparent',
-  opacity: 0,
-  visibility: 'visible',
-  transition: 'all 0.5s',
-  '&:hover': {
-    opacity: 1
   }
 });
 
@@ -165,9 +97,87 @@ export default function ProductsComponent() {
             </CarouselButton>
           }
         >
-          {items.map((item) => (
-            <CarouselItem key={item.name} props={item} />
-          ))}
+          {products
+            .filter((item) => item.category === 'man')
+            .map((item) => (
+              <ProductsItem key={item.id} props={item} />
+            ))}
+        </Carousel>
+      </Box>
+      <Box sx={{ px: 3, py: 10 }}>
+        <Box sx={{ mb: 6 }}>
+          <PoppinsTypography variant="h3" sx={{ fontWeight: 700 }}>
+            Women's Latest
+          </PoppinsTypography>
+          <PoppinsTypography
+            variant="subtitle1"
+            color="#a1a1a1"
+            fontStyle="italic"
+          >
+            Details to details is what makes Hexashop different from
+            the other themes.
+          </PoppinsTypography>
+        </Box>
+        <Carousel
+          show={3}
+          slide={1}
+          transition={0.5}
+          swiping={true}
+          swipeOn={0.1}
+          rightArrow={
+            <CarouselButton area-label="rightarrow" size="small">
+              <ArrowForwardIosIcon />
+            </CarouselButton>
+          }
+          leftArrow={
+            <CarouselButton area-label="leftarrow" size="small">
+              <ArrowBackIosIcon />
+            </CarouselButton>
+          }
+        >
+          {products
+            .filter((item) => item.category === 'woman')
+            .map((item) => (
+              <ProductsItem key={item.id} props={item} />
+            ))}
+        </Carousel>
+      </Box>
+      <Box sx={{ px: 3, py: 10 }}>
+        <Box sx={{ mb: 6 }}>
+          <PoppinsTypography variant="h3" sx={{ fontWeight: 700 }}>
+            Kid's Latest
+          </PoppinsTypography>
+          <PoppinsTypography
+            variant="subtitle1"
+            color="#a1a1a1"
+            fontStyle="italic"
+          >
+            Details to details is what makes Hexashop different from
+            the other themes.
+          </PoppinsTypography>
+        </Box>
+        <Carousel
+          show={3}
+          slide={1}
+          transition={0.5}
+          swiping={true}
+          swipeOn={0.1}
+          rightArrow={
+            <CarouselButton area-label="rightarrow" size="small">
+              <ArrowForwardIosIcon />
+            </CarouselButton>
+          }
+          leftArrow={
+            <CarouselButton area-label="leftarrow" size="small">
+              <ArrowBackIosIcon />
+            </CarouselButton>
+          }
+        >
+          {products
+            .filter((item) => item.category === 'kid')
+            .map((item) => (
+              <ProductsItem key={item.id} props={item} />
+            ))}
         </Carousel>
       </Box>
       <Box sx={{ py: 10, flexGrow: 1 }}>
@@ -308,56 +318,5 @@ export default function ProductsComponent() {
         </Grid>
       </Box>
     </Container>
-  );
-}
-
-function CarouselItem({ props }: any) {
-  return (
-    <Card
-      sx={{ maxWidth: 350, borderRadius: 0, mx: 1 }}
-      elevation={0}
-    >
-      <Box sx={{ position: 'relative' }}>
-        <HoverBox>
-          <CardButton area-label="openproduct" size="small">
-            <VisibilityIcon />
-          </CardButton>
-          <CardButton area-label="favouriteproduct" size="small">
-            <StarIcon />
-          </CardButton>
-          <CardButton area-label="addproduct" size="small">
-            <ShoppingCartIcon />
-          </CardButton>
-        </HoverBox>
-        <CardMedia
-          component="img"
-          alt="Men Product"
-          image={menProductImage01}
-          sx={{ mb: 2, pointerEvents: 'none', flexGrow: 1 }}
-        />
-      </Box>
-      <Grid
-        container
-        justifyContent="space-between"
-        alignItems="center"
-        sx={{ zIndex: 10 }}
-      >
-        <Grid item>
-          <PoppinsTypography
-            gutterBottom
-            variant="h5"
-            sx={{ fontWeight: 700 }}
-          >
-            {props.name}
-          </PoppinsTypography>
-        </Grid>
-        <Grid item>
-          <Rating name="size-small" defaultValue={2} size="small" />
-        </Grid>
-      </Grid>
-      <PoppinsTypography gutterBottom variant="h5" color="#a1a1a1">
-        $120.00
-      </PoppinsTypography>
-    </Card>
   );
 }
