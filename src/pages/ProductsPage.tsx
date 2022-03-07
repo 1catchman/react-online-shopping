@@ -6,31 +6,21 @@ import {
   Box,
   Container
 } from '@mui/material/';
+import { HeadingBox } from '../components/CustomComponents';
 import { Link, useLocation } from 'react-router-dom';
-import { useTheme, styled } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import { products, totalPage } from '../data/products';
 import ProductsItem from '../components/ProductsItem';
 import { PRODUCTS_PER_PAGE } from '../utils/constants';
 import { PoppinsTypography } from '../utils/PoppinsTypography';
 import productsPageHeadingImage from '../images/products-page-heading.jpg';
 
-const HeadingBox = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'center',
-  minHeight: 400,
-  width: '100%',
-  overflow: 'hidden',
-  color: 'white',
-  background: `url(${productsPageHeadingImage}) no-repeat center center`,
-  backgroundSize: 'cover'
-});
-
 export default function ProductsPage() {
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
+  const mdBreakpointDown = useMediaQuery(
+    theme.breakpoints.down('md')
+  );
 
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -44,6 +34,7 @@ export default function ProductsPage() {
   return (
     <Box>
       <HeadingBox
+        img={productsPageHeadingImage}
         sx={{
           my: 10
         }}
@@ -96,9 +87,11 @@ export default function ProductsPage() {
           <Box
             sx={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateColumns: `repeat(${
+                mdBreakpointDown ? '2' : '3'
+              }, 1fr)`,
               columnGap: 2,
-              rowGap: 4
+              rowGap: mdBreakpointDown ? 2 : 4
             }}
           >
             {selectedProducts.map((item) => (

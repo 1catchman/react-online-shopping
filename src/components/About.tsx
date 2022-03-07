@@ -9,6 +9,7 @@ import {
 import { useTheme, styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { HeadingBox } from '../components/CustomComponents';
 
 import aboutPageHeadingImage from '../images/about-us-page-heading.jpg';
 import aboutPageSectionImage from '../images/about-left-image.jpg';
@@ -38,21 +39,6 @@ const CustomLink = styled(({ ...other }: LinkProps) => (
   }
 });
 
-const HeadingBox = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'center',
-  minHeight: 400,
-  width: '100%',
-  overflow: 'hidden',
-  zIndex: -1,
-  color: 'white',
-  background: `url(${aboutPageHeadingImage}) no-repeat center center`,
-  backgroundSize: 'cover'
-});
-
 const Img = styled('img')({
   width: '100%',
   overflow: 'hidden'
@@ -64,6 +50,7 @@ export default function AboutComponent() {
   return (
     <Box>
       <HeadingBox
+        img={aboutPageHeadingImage}
         sx={{
           my: 10
         }}

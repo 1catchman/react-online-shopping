@@ -1,14 +1,8 @@
 import * as React from 'react';
-import {
-  Container,
-  Box,
-  Grid,
-  FormControl,
-  InputBase
-} from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
+import { Container, Box, Grid, FormControl } from '@mui/material';
+import { CustomInput, SendButton } from './CustomComponents';
 import { PoppinsTypography } from '../utils/PoppinsTypography';
-import { useTheme, styled } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SendIcon from '@mui/icons-material/Send';
 
@@ -38,48 +32,6 @@ const items = [
     body: 'Facebook, Instagram, Behance, Linkedin'
   }
 ];
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(3)
-  },
-  '& .MuiInputBase-input': {
-    position: 'relative',
-    backgroundColor:
-      theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-    border: '1px solid #ced4da',
-    width: '100%',
-    padding: '12px 14px',
-    margin: '3px 0',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow'
-    ]),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: 'Poppins',
-    '&:focus': {
-      borderRadius: 4,
-      border: '1px solid #000'
-    }
-  }
-}));
-
-const SendButton = styled(LoadingButton)({
-  boxShadow: 'none',
-  height: 47,
-  textTransform: 'none',
-  border: '1px solid',
-  lineHeight: 1.5,
-  backgroundColor: '#2a2a2a',
-  borderColor: '#2a2a2a',
-  borderRadius: 0,
-  '&:hover': {
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
-    color: '#2a2a2a'
-  }
-});
 
 export default function SubscribeComponent() {
   const theme = useTheme();
@@ -129,13 +81,10 @@ export default function SubscribeComponent() {
               }}
             >
               <FormControl variant="standard">
-                <BootstrapInput
-                  placeholder="Your Name"
-                  id="nameinput"
-                />
+                <CustomInput placeholder="Your Name" id="nameinput" />
               </FormControl>
               <FormControl variant="standard">
-                <BootstrapInput
+                <CustomInput
                   placeholder="Your Email Address"
                   id="emailinput"
                 />

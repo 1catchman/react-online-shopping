@@ -1,14 +1,9 @@
 import { styled } from '@mui/material/styles';
-import {
-  Box,
-  Grid,
-  ImageList,
-  ImageListItem,
-  Button
-} from '@mui/material';
+import { Box, Grid, ImageList, ImageListItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { CustomButton } from '../components/CustomComponents';
 
 import leftBannerImage from '../images/left-banner-image.jpg';
 import rightBannerImageFirst from '../images/baner-right-image-01.jpg';
@@ -71,24 +66,6 @@ const Img = styled('img')({
   overflow: 'hidden'
 });
 
-const CustomButton = styled(Button)({
-  fontSize: '13px',
-  textTransform: 'none',
-  color: '#fff',
-  border: '1px solid #fff',
-  borderRadius: 0,
-  padding: '12px 25px',
-  display: 'inline-block',
-  fontWeight: '500',
-  transition: 'all .3s',
-  fontFamily: 'Poppins',
-  '&:hover': {
-    backgroundColor: '#fff',
-    color: '#2a2a2a',
-    border: '1px solid #fff'
-  }
-});
-
 export default function BannersComponent() {
   const theme = useTheme();
   const mdBreakpointUp = useMediaQuery(theme.breakpoints.up('md'));
@@ -132,7 +109,7 @@ export default function BannersComponent() {
             >
               Custom, responsive &amp; adaptive Material-UI Template
             </PoppinsTypography>
-            <CustomButton variant="outlined">
+            <CustomButton variant="outlined" color="white">
               Purchase Now!
             </CustomButton>
           </InnerBox>
@@ -185,6 +162,7 @@ export default function BannersComponent() {
                     {item.description}
                   </PoppinsTypography>
                   <CustomButton
+                    color="white"
                     variant="outlined"
                     style={
                       mlBreakpointBetween || smBreakpointDown
