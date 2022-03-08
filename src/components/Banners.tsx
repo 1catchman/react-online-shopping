@@ -2,8 +2,11 @@ import { styled } from '@mui/material/styles';
 import { Box, Grid, ImageList, ImageListItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
-import { CustomButton } from '../components/CustomComponents';
+import {
+  PoppinsTypography,
+  Img,
+  CustomButton
+} from './CustomComponents';
 
 import leftBannerImage from '../images/left-banner-image.jpg';
 import rightBannerImageFirst from '../images/baner-right-image-01.jpg';
@@ -59,11 +62,6 @@ const HoverBox = styled(Box)({
   '&:hover': {
     opacity: 1
   }
-});
-
-const Img = styled('img')({
-  width: '100%',
-  overflow: 'hidden'
 });
 
 export default function BannersComponent() {

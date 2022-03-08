@@ -7,13 +7,15 @@ import {
   Rating,
   Button
 } from '@mui/material/';
+import { useLocation } from 'react-router-dom';
 import { useTheme, styled } from '@mui/material/styles';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
 import {
+  PoppinsTypography,
   CustomInput,
   CustomButton,
   HeadingBox
 } from '../components/CustomComponents';
+import { products } from '../data/products';
 
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import productsPageHeadingImage from '../images/products-page-heading.jpg';
@@ -47,6 +49,12 @@ export default function SingleProductPage() {
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
 
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const selectedProduct = products.find(
+    (item) => item.id === Number(query.get('id'))
+  );
+
   return (
     <Box>
       <HeadingBox
@@ -71,20 +79,30 @@ export default function SingleProductPage() {
         sx={{ mb: 10 }}
       >
         <Grid container spacing={4}>
-          <Grid item md={12} lg={8} spacing={4}>
-            <Img src={firstSingleProductImage} alt="Single Product" />
+          <Grid item container md={12} lg={8}>
+            <Img
+              src={firstSingleProductImage}
+              alt="Single Product"
+              sx={{ mb: 3 }}
+            />
             <Img
               src={secondSingleProductImage}
               alt="Single Product"
             />
           </Grid>
           <Grid item md={12} lg={4}>
+            {selectedProduct && (
+              <Img
+                src={selectedProduct!.img}
+                alt={selectedProduct!.title}
+              />
+            )}
             <PoppinsTypography
               gutterBottom
               variant="h5"
-              sx={{ fontWeight: 700 }}
+              sx={{ fontWeight: 700, mt: 3 }}
             >
-              Title
+              {selectedProduct ? selectedProduct!.title : 'Title'}
             </PoppinsTypography>
 
             <Grid
@@ -100,7 +118,8 @@ export default function SingleProductPage() {
                   color="#a1a1a1"
                   sx={{ mb: 0 }}
                 >
-                  $00.00
+                  ${selectedProduct ? selectedProduct!.price : '00'}
+                  .00
                 </PoppinsTypography>
               </Grid>
               <Grid item>

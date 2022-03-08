@@ -9,7 +9,7 @@ import {
   IconButton
 } from '@mui/material';
 import { Carousel } from '@trendyol-js/react-carousel';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { PoppinsTypography, Img } from './CustomComponents';
 import { styled } from '@mui/system';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -22,11 +22,6 @@ import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 
 import firstExploreImage from '../images/explore-image-01.jpg';
 import secondExploreImage from '../images/explore-image-02.jpg';
-
-const Img = styled('img')({
-  width: '100%',
-  overflow: 'hidden'
-});
 
 const CarouselButton = styled(IconButton)({
   padding: 8,

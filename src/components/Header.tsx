@@ -10,6 +10,7 @@ import {
 import RouterLink from './RouterLink';
 import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
+import { menuLinks } from './Menu';
 
 import BasicMenu from './Menu';
 import logo from '../images/logo.png';
@@ -54,32 +55,21 @@ export default function HeaderComponent() {
       }}
     >
       <Container maxWidth="lg">
-        <Toolbar>
+        <Toolbar id="back-to-top-anchor">
           <Box sx={{ flexGrow: 1 }}>
             <img src={logo} alt="Logo" />
           </Box>
           {matches ? (
             <NavBox>
-              <RouterLink to="/">
-                <CustomButton variant="text">Home</CustomButton>
-              </RouterLink>
-              <CustomButton variant="text">Men's</CustomButton>
-              <CustomButton variant="text">Women's</CustomButton>
-              <CustomButton variant="text">Kid's</CustomButton>
-              <RouterLink to="/about">
-                <CustomButton variant="text">About Us</CustomButton>
-              </RouterLink>
-              <RouterLink to="/products">
-                <CustomButton variant="text">Products</CustomButton>
-              </RouterLink>
-              <RouterLink to="/singleproduct">
-                <CustomButton variant="text">
-                  Single Product
-                </CustomButton>
-              </RouterLink>
-              <RouterLink to="/contactus">
-                <CustomButton variant="text">Contact Us</CustomButton>
-              </RouterLink>
+              {menuLinks.map((link) => {
+                return (
+                  <RouterLink key={link.name} to={link.to}>
+                    <CustomButton variant="text">
+                      {link.name}
+                    </CustomButton>
+                  </RouterLink>
+                );
+              })}
             </NavBox>
           ) : (
             <BasicMenu appBarRef={appBarElement} />

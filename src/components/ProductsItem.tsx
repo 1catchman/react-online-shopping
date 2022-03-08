@@ -7,11 +7,12 @@ import {
   IconButton
 } from '@mui/material';
 import { styled } from '@mui/system';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { PoppinsTypography } from './CustomComponents';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import StarIcon from '@mui/icons-material/Star';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import RouterLink from './RouterLink';
 
 const CardButton = styled(IconButton)({
   padding: 8,
@@ -21,6 +22,7 @@ const CardButton = styled(IconButton)({
   backgroundColor: '#fff',
   transition: 'all .3s',
   transform: 'translateY(10%)',
+  width: '100%',
   '&:hover': {
     transform: 'translateY(0)',
     color: '#fff',
@@ -57,9 +59,11 @@ export default function ProductsItem({ props }: any) {
     >
       <Box sx={{ position: 'relative' }}>
         <HoverBox>
-          <CardButton area-label="openproduct" size="small">
-            <VisibilityIcon />
-          </CardButton>
+          <RouterLink to={`/product?id=${props.id}`}>
+            <CardButton area-label="openproduct" size="small">
+              <VisibilityIcon />
+            </CardButton>
+          </RouterLink>
           <CardButton area-label="favouriteproduct" size="small">
             <StarIcon />
           </CardButton>

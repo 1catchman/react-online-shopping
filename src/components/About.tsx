@@ -8,8 +8,11 @@ import {
 } from '@mui/material';
 import { useTheme, styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
-import { HeadingBox } from '../components/CustomComponents';
+import {
+  PoppinsTypography,
+  Img,
+  HeadingBox
+} from './CustomComponents';
 
 import aboutPageHeadingImage from '../images/about-us-page-heading.jpg';
 import aboutPageSectionImage from '../images/about-left-image.jpg';
@@ -37,11 +40,6 @@ const CustomLink = styled(({ ...other }: LinkProps) => (
     color: '#2a2a2a',
     backgroundColor: '#eee'
   }
-});
-
-const Img = styled('img')({
-  width: '100%',
-  overflow: 'hidden'
 });
 
 export default function AboutComponent() {

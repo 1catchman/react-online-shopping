@@ -1,9 +1,18 @@
 import * as React from 'react';
-import { Box, Container, Grid, FormControl } from '@mui/material';
-import { useTheme, styled } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
 import {
+  Box,
+  Container,
+  Grid,
+  FormControl,
+  useFormControl,
+  FormHelperText
+} from '@mui/material';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import {
+  PoppinsTypography,
+  Img,
   CustomInput,
   SendButton,
   HeadingBox
@@ -11,40 +20,53 @@ import {
 
 import SendIcon from '@mui/icons-material/Send';
 import aboutPageHeadingImage from '../images/about-us-page-heading.jpg';
+import aboutPageSectionImage from '../images/about-left-image.jpg';
+import SubscribeComponent from '../components/Subscribe';
 
-export const CustomTextarea = styled('textarea')({
-  width: '100%',
-  height: 140,
-  minHeight: 120,
-  maxHeight: 200,
-  maxWidth: '100%',
-  padding: '0px 15px',
-  fontSize: 14,
-  fontStyle: 'italic',
-  fontWeight: 500,
-  color: '#aaa',
-  borderRadius: 0,
-  border: '1px solid #7a7a7a',
-  boxShadow: 'none',
-  fontFamily: 'Poppins',
-  '&:focus': {
-    borderColor: '#2a2a2a',
-    borderRadius: 0
-  }
-});
+interface IFormInput {
+  name: string;
+  email: string;
+  message: string;
+}
+
+function MyFormHelperText(email?: any) {
+  const { error } = useFormControl() || {};
+
+  const helperText = React.useMemo(() => {
+    if (email.message) return email.message;
+    return error ? 'This field is required' : null;
+  }, [error, email]);
+
+  return <FormHelperText>{helperText}</FormHelperText>;
+}
 
 export default function ContactPage() {
+  const [loading, setLoading] = React.useState(false);
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
   const smBreakpointDown = useMediaQuery(
     theme.breakpoints.down('sm')
   );
-  const [loading, setLoading] = React.useState(false);
 
-  function handleClick() {
+  const {
+    control,
+    register,
+    formState: { errors },
+    resetField,
+    handleSubmit
+  } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
     setLoading(true);
-    setTimeout(() => setLoading(false), 2000);
-  }
+    setTimeout(() => {
+      resetField('name');
+      resetField('email');
+      resetField('message');
+      console.log('Submitted data', data);
+      setLoading(false);
+      alert('Data is submitted successfully');
+    }, 2000);
+  };
 
   return (
     <Box>
@@ -73,15 +95,7 @@ export default function ContactPage() {
       >
         <Grid container spacing={6}>
           <Grid item md={12} lg={6}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830854996!2d-74.11976404949758!3d40.69766374879397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2z0J3RjNGOLdCZ0L7RgNC6LCDQodCo0JA!5e0!3m2!1sru!2skz!4v1646641162519!5m2!1sru!2skz"
-              title="Google Map"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-            ></iframe>
+            <Img src={aboutPageSectionImage} alt="Section About" />
           </Grid>
           <Grid
             item
@@ -109,6 +123,7 @@ export default function ContactPage() {
             <Box
               component="form"
               noValidate
+              autoComplete="off"
               sx={{
                 display: 'grid',
                 columnGap: 4,
@@ -123,30 +138,84 @@ export default function ContactPage() {
                   rowGap: 2
                 }}
               >
-                <FormControl variant="standard">
-                  <CustomInput
-                    placeholder="Your Name"
-                    id="nameinput"
-                    required
-                  />
-                </FormControl>
-                <FormControl variant="standard">
-                  <CustomInput
-                    placeholder="Your Email Address"
-                    id="emailinput"
-                    required
-                  />
-                </FormControl>
-              </Box>
-              <FormControl variant="standard">
-                <CustomTextarea
-                  placeholder="Your message"
-                  id="messageinput"
-                  required
+                <Controller
+                  name="name"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => {
+                    return (
+                      <FormControl
+                        error={errors.name?.type === 'required'}
+                        variant="standard"
+                      >
+                        <CustomInput
+                          placeholder="Your Name"
+                          {...field}
+                          {...register('name', {
+                            required: true
+                          })}
+                        />
+                        <MyFormHelperText />
+                      </FormControl>
+                    );
+                  }}
                 />
-              </FormControl>
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => {
+                    return (
+                      <FormControl
+                        error={
+                          errors.email?.type === 'required' ||
+                          errors.email?.type === 'pattern'
+                        }
+                        variant="standard"
+                      >
+                        <CustomInput
+                          placeholder="Your Email Address"
+                          {...field}
+                          {...register('email', {
+                            required: true,
+                            pattern: {
+                              value: /\S+@\S+\.\S+/,
+                              message: 'Enter the valid email address'
+                            }
+                          })}
+                        />
+                        <MyFormHelperText {...errors.email} />
+                      </FormControl>
+                    );
+                  }}
+                />
+              </Box>
+              <Controller
+                name="message"
+                control={control}
+                defaultValue=""
+                render={({ field }) => {
+                  return (
+                    <FormControl
+                      error={errors.message?.type === 'required'}
+                      variant="standard"
+                    >
+                      <CustomInput
+                        placeholder="Your message"
+                        multiline
+                        rows={4}
+                        {...field}
+                        {...register('message', {
+                          required: true
+                        })}
+                      />
+                      <MyFormHelperText />
+                    </FormControl>
+                  );
+                }}
+              />
               <SendButton
-                onClick={handleClick}
+                onClick={handleSubmit(onSubmit)}
                 loading={loading}
                 loadingPosition="center"
                 variant="contained"
@@ -161,6 +230,7 @@ export default function ContactPage() {
           </Grid>
         </Grid>
       </Container>
+      <SubscribeComponent />
     </Box>
   );
 }

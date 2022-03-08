@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useTheme, styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { PoppinsTypography } from './CustomComponents';
 
 import firstServiceImage from '../images/service-01.jpg';
 import secondServiceImage from '../images/service-02.jpg';

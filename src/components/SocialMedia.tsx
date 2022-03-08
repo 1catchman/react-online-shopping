@@ -5,7 +5,7 @@ import {
   ImageListItem,
   Typography
 } from '@mui/material';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { PoppinsTypography } from './CustomComponents';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { styled } from '@mui/system';

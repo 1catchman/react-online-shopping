@@ -1,17 +1,40 @@
-import { Button, ButtonProps, Box, BoxProps } from '@mui/material/';
+import {
+  Typography,
+  TypographyProps,
+  InputBase,
+  Button,
+  ButtonProps,
+  Box,
+  BoxProps
+} from '@mui/material/';
 import { styled as defaultStyled } from '@mui/material/styles';
 import { styled as legacyStyled } from '@mui/styles';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-export const CustomInput = defaultStyled('input')({
+export const PoppinsTypography = defaultStyled(
+  ({ ...other }: TypographyProps) => <Typography {...other} />
+)({
+  fontFamily: `Poppins, sans-serif`,
+  fontWeight: 400,
+  msTextSizeAdjust: '100%',
+  webkitFontSmoothing: 'antialiased',
+  mozOsxFontSmoothing: 'grayscale'
+});
+
+export const Img = defaultStyled('img')({
   width: '100%',
-  height: 44,
-  lineHeight: 44,
-  padding: '0px 15px',
+  overflow: 'hidden'
+});
+
+export const CustomInput = defaultStyled(InputBase)({
+  width: '100%',
+  minHeight: 44,
+  maxHeight: 440,
+  padding: '6px 15px',
   fontSize: 14,
   fontStyle: 'italic',
   fontWeight: 500,
-  color: '#aaa',
+  color: '#2a2a2a',
   borderRadius: 0,
   border: '1px solid #7a7a7a',
   boxShadow: 'none',
@@ -24,7 +47,7 @@ export const CustomInput = defaultStyled('input')({
 
 export const SendButton = defaultStyled(LoadingButton)({
   boxShadow: 'none',
-  height: 43,
+  height: 44,
   textTransform: 'none',
   border: '1px solid',
   lineHeight: 1.5,

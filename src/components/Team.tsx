@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Link, LinkProps } from '@mui/material';
 import { useTheme, styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { PoppinsTypography } from './CustomComponents';
 
 import firstTeamMemberImage from '../images/team-member-01.jpg';
 import secondTeamMemberImage from '../images/team-member-02.jpg';

@@ -1,7 +1,15 @@
 import * as React from 'react';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import RouterLink from './RouterLink';
+import { Menu, MenuItem } from '@mui/material/';
 import { styled } from '@mui/system';
+
+export const menuLinks = [
+  { name: 'Home', to: '/' },
+  { name: 'About Us', to: '/about' },
+  { name: 'Products', to: '/products' },
+  { name: 'Single Product', to: '/product' },
+  { name: 'Contact Us', to: '/contact' }
+];
 
 const HamburgerButton = styled('a')({
   cursor: 'pointer',
@@ -145,11 +153,15 @@ export default function BasicMenu({ appBarRef }: BasicMenuProps) {
           horizontal: 'center'
         }}
       >
-        <CustomMenuItem onClick={handleClose}>Profile</CustomMenuItem>
-        <CustomMenuItem onClick={handleClose}>
-          My account
-        </CustomMenuItem>
-        <CustomMenuItem onClick={handleClose}>Logout</CustomMenuItem>
+        {menuLinks.map((link) => {
+          return (
+            <RouterLink key={link.name} to={link.to}>
+              <CustomMenuItem onClick={handleClose}>
+                {link.name}
+              </CustomMenuItem>
+            </RouterLink>
+          );
+        })}
       </StyledMenu>
     </>
   );

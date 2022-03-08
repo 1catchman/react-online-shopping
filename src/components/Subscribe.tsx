@@ -1,7 +1,19 @@
 import * as React from 'react';
-import { Container, Box, Grid, FormControl } from '@mui/material';
-import { CustomInput, SendButton } from './CustomComponents';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
+import {
+  Container,
+  Box,
+  Grid,
+  FormControl,
+  useFormControl,
+  FormHelperText
+} from '@mui/material';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import {
+  PoppinsTypography,
+  CustomInput,
+  SendButton
+} from './CustomComponents';
+
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SendIcon from '@mui/icons-material/Send';
@@ -33,6 +45,23 @@ const items = [
   }
 ];
 
+function MyFormHelperText(email?: any) {
+  const { error } = useFormControl() || {};
+
+  const helperText = React.useMemo(() => {
+    if (email.message) return email.message;
+    return error ? 'This field is required' : null;
+  }, [error, email]);
+
+  return <FormHelperText>{helperText}</FormHelperText>;
+}
+
+interface IFormInput {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export default function SubscribeComponent() {
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
@@ -41,10 +70,25 @@ export default function SubscribeComponent() {
   );
   const [loading, setLoading] = React.useState(false);
 
-  function handleClick() {
+  const {
+    control,
+    register,
+    formState: { errors },
+    resetField,
+    handleSubmit
+  } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
     setLoading(true);
-    setTimeout(() => setLoading(false), 2000);
-  }
+    setTimeout(() => {
+      resetField('name');
+      resetField('email');
+      resetField('message');
+      console.log('Submitted data', data);
+      setLoading(false);
+      alert('Data is submitted successfully');
+    }, 2000);
+  };
 
   return (
     <Container
@@ -80,22 +124,64 @@ export default function SubscribeComponent() {
                 rowGap: 1
               }}
             >
-              <FormControl variant="standard">
-                <CustomInput placeholder="Your Name" id="nameinput" />
-              </FormControl>
-              <FormControl variant="standard">
-                <CustomInput
-                  placeholder="Your Email Address"
-                  id="emailinput"
-                />
-              </FormControl>
+              <Controller
+                name="name"
+                control={control}
+                defaultValue=""
+                render={({ field }) => {
+                  return (
+                    <FormControl
+                      error={errors.name?.type === 'required'}
+                      variant="standard"
+                    >
+                      <CustomInput
+                        placeholder="Your Name"
+                        {...field}
+                        {...register('name', {
+                          required: true
+                        })}
+                      />
+                      <MyFormHelperText />
+                    </FormControl>
+                  );
+                }}
+              />
+              <Controller
+                name="email"
+                control={control}
+                defaultValue=""
+                render={({ field }) => {
+                  return (
+                    <FormControl
+                      error={
+                        errors.email?.type === 'required' ||
+                        errors.email?.type === 'pattern'
+                      }
+                      variant="standard"
+                    >
+                      <CustomInput
+                        placeholder="Your Email Address"
+                        {...field}
+                        {...register('email', {
+                          required: true,
+                          pattern: {
+                            value: /\S+@\S+\.\S+/,
+                            message: 'Enter the valid email address'
+                          }
+                        })}
+                      />
+                      <MyFormHelperText {...errors.email} />
+                    </FormControl>
+                  );
+                }}
+              />
+
               <SendButton
-                onClick={handleClick}
+                onClick={handleSubmit(onSubmit)}
                 loading={loading}
                 loadingPosition="center"
                 variant="contained"
                 sx={{
-                  alignSelf: 'center',
                   width: smBreakpointDown ? '100%' : 30
                 }}
               >

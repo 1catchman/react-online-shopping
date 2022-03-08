@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Container, Box, Grid, Link, LinkProps } from '@mui/material';
 import { useTheme, styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
+import { PoppinsTypography } from './CustomComponents';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';

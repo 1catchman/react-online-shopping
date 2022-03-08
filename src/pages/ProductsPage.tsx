@@ -6,16 +6,19 @@ import {
   Box,
   Container
 } from '@mui/material/';
-import { HeadingBox } from '../components/CustomComponents';
+import {
+  PoppinsTypography,
+  HeadingBox
+} from '../components/CustomComponents';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { products, totalPage } from '../data/products';
 import ProductsItem from '../components/ProductsItem';
 import { PRODUCTS_PER_PAGE } from '../utils/constants';
-import { PoppinsTypography } from '../utils/PoppinsTypography';
 import productsPageHeadingImage from '../images/products-page-heading.jpg';
 
 export default function ProductsPage() {
+  const ref = React.useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
   const mdBreakpointDown = useMediaQuery(
@@ -54,6 +57,7 @@ export default function ProductsPage() {
       <Container
         maxWidth={lgBreakpointUp ? 'lg' : 'md'}
         sx={{ py: 10 }}
+        ref={ref}
       >
         <Box
           sx={{
@@ -109,6 +113,11 @@ export default function ProductsPage() {
                   item.page === 1 ? '' : `?page=${item.page}`
                 }`}
                 {...item}
+                onClick={() =>
+                  ref.current !== null
+                    ? ref.current.scrollIntoView()
+                    : null
+                }
               />
             )}
           />
