@@ -61,6 +61,23 @@ export const SendButton = defaultStyled(LoadingButton)({
   }
 });
 
+export const ToggleButton = defaultStyled(Button)({
+  borderRadius: 0,
+  paddingInline: 14,
+  minWidth: 34,
+  height: 39,
+  borderColor: '#efefef',
+  color: 'black',
+  WebkitTransition: 'all .3s',
+  transition: 'all .3s',
+  msTransition: 'all .3s',
+  MozTransition: 'all .3s',
+  '&:hover': {
+    backgroundColor: '#efefef',
+    border: '1px solid #efefef'
+  }
+});
+
 interface CustomHeadingProps {
   img: string;
 }

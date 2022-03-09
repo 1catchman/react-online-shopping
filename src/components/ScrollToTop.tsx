@@ -10,7 +10,7 @@ export const ScrollToTop = ({ children }: Props) => {
   const { pathname } = useLocation();
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 800
+    threshold: 700
   });
 
   React.useEffect(() => {
@@ -25,7 +25,7 @@ export const ScrollToTop = ({ children }: Props) => {
     if (anchor) {
       anchor.scrollIntoView({
         behavior: 'smooth',
-        block: 'center'
+        block: 'start'
       });
     }
   };

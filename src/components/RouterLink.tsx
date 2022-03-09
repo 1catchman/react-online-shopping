@@ -18,7 +18,7 @@ const CustomLink = styled(
 interface Props extends MaterialLinkProps {
   label?: string;
   to: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export default function RouterLink({

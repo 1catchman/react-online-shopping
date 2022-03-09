@@ -7,7 +7,6 @@ export const menuLinks = [
   { name: 'Home', to: '/' },
   { name: 'About Us', to: '/about' },
   { name: 'Products', to: '/products' },
-  { name: 'Single Product', to: '/product' },
   { name: 'Contact Us', to: '/contact' }
 ];
 
@@ -18,9 +17,9 @@ const HamburgerButton = styled('a')({
   top: 10,
   width: 32,
   height: 40,
+  right: 16,
   textIndent: '-9999em',
   zIndex: '99',
-  right: 16,
   '&.active span': {
     backgroundColor: 'transparent'
   },

@@ -4,8 +4,7 @@ import {
   Box,
   Container,
   Grid,
-  Rating,
-  Button
+  Rating
 } from '@mui/material/';
 import { useLocation } from 'react-router-dom';
 import { useTheme, styled } from '@mui/material/styles';
@@ -13,7 +12,8 @@ import {
   PoppinsTypography,
   CustomInput,
   CustomButton,
-  HeadingBox
+  HeadingBox,
+  ToggleButton
 } from '../components/CustomComponents';
 import { products } from '../data/products';
 
@@ -26,23 +26,6 @@ const Img = styled('img')({
   width: '100%',
   verticalAlign: 'top',
   overflow: 'hidden'
-});
-
-const ToggleButton = styled(Button)({
-  borderRadius: 0,
-  paddingInline: 14,
-  minWidth: 34,
-  height: 39,
-  borderColor: '#efefef',
-  color: 'black',
-  WebkitTransition: 'all .3s',
-  transition: 'all .3s',
-  msTransition: 'all .3s',
-  MozTransition: 'all .3s',
-  '&:hover': {
-    backgroundColor: '#efefef',
-    border: '1px solid #efefef'
-  }
 });
 
 export default function SingleProductPage() {
@@ -189,11 +172,14 @@ export default function SingleProductPage() {
                     width: 35,
                     height: 39,
                     padding: '0 5px',
-                    textAlign: 'center',
                     fontStyle: 'normal',
                     color: 'black',
                     fontSize: 16,
-                    borderColor: '#efefef'
+                    borderColor: '#efefef',
+                    minHeight: 39,
+                    '& input': {
+                      textAlign: 'center'
+                    }
                   }}
                 />
                 <ToggleButton

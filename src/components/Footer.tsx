@@ -3,6 +3,9 @@ import { Container, Box, Grid, Link, LinkProps } from '@mui/material';
 import { useTheme, styled } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { PoppinsTypography } from './CustomComponents';
+import RouterLink from './RouterLink';
+import { menuLinks } from './Menu';
+import DialogComponent from './Dialog';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -71,11 +74,19 @@ export default function FooterComponent() {
                 >
                   Useful Links
                 </PoppinsTypography>
-
-                <CustomLink href="#">Homepage</CustomLink>
-                <CustomLink href="#">About Us</CustomLink>
-                <CustomLink href="#">Help</CustomLink>
-                <CustomLink href="#">Contact Us</CustomLink>
+                {menuLinks.map((link) => {
+                  return (
+                    <RouterLink
+                      key={link.name}
+                      to={link.to}
+                      label={link.name}
+                      sx={{
+                        color: 'white',
+                        '&:hover': { color: '#aaa' }
+                      }}
+                    />
+                  );
+                })}
               </Box>
             </Grid>
             <Grid item lg={3} sm={6} md={6}>
@@ -86,11 +97,7 @@ export default function FooterComponent() {
                 >
                   Help &amp; Information
                 </PoppinsTypography>
-
-                <CustomLink href="#">Help</CustomLink>
-                <CustomLink href="#">FAQ's</CustomLink>
-                <CustomLink href="#">Shipping</CustomLink>
-                <CustomLink href="#">Tracking ID</CustomLink>
+                <DialogComponent />
               </Box>
             </Grid>
           </Grid>

@@ -10,9 +10,10 @@ import {
 import RouterLink from './RouterLink';
 import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
-import { menuLinks } from './Menu';
+import BasicMenu, { menuLinks } from './Menu';
+import ElevationScroll from './ElevationScroll';
+import CartButtonComponent from './CartButton';
 
-import BasicMenu from './Menu';
 import logo from '../images/logo.png';
 
 const NavBox = styled(Box)({
@@ -43,39 +44,53 @@ export default function HeaderComponent() {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <AppBar
-      ref={appBarElement}
-      position="static"
-      color="transparent"
-      sx={{
-        boxShadow: 'none',
-        py: 4,
-        backgroundColor: '#f7f7f7',
-        transition: 'all .5s ease 0s'
-      }}
-    >
-      <Container maxWidth="lg">
-        <Toolbar id="back-to-top-anchor">
-          <Box sx={{ flexGrow: 1 }}>
-            <img src={logo} alt="Logo" />
-          </Box>
-          {matches ? (
-            <NavBox>
-              {menuLinks.map((link) => {
-                return (
-                  <RouterLink key={link.name} to={link.to}>
-                    <CustomButton variant="text">
-                      {link.name}
-                    </CustomButton>
-                  </RouterLink>
-                );
-              })}
-            </NavBox>
-          ) : (
-            <BasicMenu appBarRef={appBarElement} />
-          )}
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <ElevationScroll>
+      <AppBar
+        ref={appBarElement}
+        color="transparent"
+        sx={{
+          boxShadow: 'none',
+          py: 4,
+          backgroundColor: '#f7f7f7',
+          transition: 'all .5s ease 0s'
+        }}
+      >
+        <Container maxWidth="lg">
+          <Toolbar>
+            <Box sx={{ flexGrow: 1 }}>
+              <img src={logo} alt="Logo" />
+            </Box>
+            {matches ? (
+              <NavBox>
+                {menuLinks.map((link) => {
+                  return (
+                    <RouterLink key={link.name} to={link.to}>
+                      <CustomButton variant="text">
+                        {link.name}
+                      </CustomButton>
+                    </RouterLink>
+                  );
+                })}
+                <CartButtonComponent />
+              </NavBox>
+            ) : (
+              <>
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 18,
+                    right: 78,
+                    width: 35
+                  }}
+                >
+                  <CartButtonComponent />
+                </Box>
+                <BasicMenu appBarRef={appBarElement} />
+              </>
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </ElevationScroll>
   );
 }

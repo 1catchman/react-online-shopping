@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Grid, ImageList, ImageListItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -7,6 +8,7 @@ import {
   Img,
   CustomButton
 } from './CustomComponents';
+import RouterLink from './RouterLink';
 
 import leftBannerImage from '../images/left-banner-image.jpg';
 import rightBannerImageFirst from '../images/baner-right-image-01.jpg';
@@ -19,25 +21,29 @@ const itemData = [
     title: 'Women',
     description: 'Best Clothes For Women',
     body: 'Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.',
-    img: rightBannerImageFirst
+    img: rightBannerImageFirst,
+    scrollTo: 'women-section'
   },
   {
     title: 'Men',
     description: 'Best Clothes For Men',
     body: 'Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.',
-    img: rightBannerImageSecond
+    img: rightBannerImageSecond,
+    scrollTo: 'men-section'
   },
   {
     title: 'Kids',
     description: 'Best Clothes For Kids',
     body: 'Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.',
-    img: rightBannerImageThird
+    img: rightBannerImageThird,
+    scrollTo: 'kids-section'
   },
   {
     title: 'Accessories',
     description: 'Best Trend Accessories',
     body: 'Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.',
-    img: rightBannerImageFourth
+    img: rightBannerImageFourth,
+    scrollTo: 'accessories-section'
   }
 ];
 
@@ -74,6 +80,13 @@ export default function BannersComponent() {
     theme.breakpoints.down('sm')
   );
 
+  const handleClick = (scrollTo: string) => {
+    const anchor = document.querySelector(`#${scrollTo}`);
+    if (anchor) {
+      anchor.scrollIntoView();
+    }
+  };
+
   return (
     <Grid
       container
@@ -107,9 +120,11 @@ export default function BannersComponent() {
             >
               Custom, responsive &amp; adaptive Material-UI Template
             </PoppinsTypography>
-            <CustomButton variant="outlined" color="white">
-              Purchase Now!
-            </CustomButton>
+            <RouterLink to={'/products'}>
+              <CustomButton variant="outlined" color="white">
+                Purchase Now!
+              </CustomButton>
+            </RouterLink>
           </InnerBox>
           <Img
             src={leftBannerImage}
@@ -167,6 +182,7 @@ export default function BannersComponent() {
                         ? { padding: '8px 16px', fontSize: '11px' }
                         : {}
                     }
+                    onClick={() => handleClick(item.scrollTo)}
                   >
                     Discover More
                   </CustomButton>

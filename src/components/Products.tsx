@@ -61,7 +61,7 @@ export default function ProductsComponent() {
       maxWidth={lgBreakpointUp ? 'lg' : 'md'}
       sx={{ pt: 10 }}
     >
-      <Box sx={{ px: 3, pb: 10 }}>
+      <Box sx={{ px: 3, pb: 10 }} id="men-section">
         <Box sx={{ mb: 6 }}>
           <PoppinsTypography variant="h3" sx={{ fontWeight: 700 }}>
             Men's Latest
@@ -100,7 +100,7 @@ export default function ProductsComponent() {
         </Carousel>
       </Box>
       <Box sx={{ px: 3, py: 10 }}>
-        <Box sx={{ mb: 6 }}>
+        <Box sx={{ mb: 6 }} id="women-section">
           <PoppinsTypography variant="h3" sx={{ fontWeight: 700 }}>
             Women's Latest
           </PoppinsTypography>
@@ -138,7 +138,7 @@ export default function ProductsComponent() {
         </Carousel>
       </Box>
       <Box sx={{ px: 3, py: 10 }}>
-        <Box sx={{ mb: 6 }}>
+        <Box sx={{ mb: 6 }} id="kids-section">
           <PoppinsTypography variant="h3" sx={{ fontWeight: 700 }}>
             Kid's Latest
           </PoppinsTypography>
@@ -175,7 +175,7 @@ export default function ProductsComponent() {
             ))}
         </Carousel>
       </Box>
-      <Box sx={{ py: 10, flexGrow: 1 }}>
+      <Box sx={{ py: 10, flexGrow: 1 }} id="accessories-section">
         <Grid container rowSpacing={6}>
           <Grid
             item

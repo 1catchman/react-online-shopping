@@ -22,7 +22,8 @@ function App() {
       <Container
         disableGutters
         maxWidth={false}
-        sx={{ overflowX: 'hidden' }}
+        sx={{ overflowX: 'hidden', pt: 16 }}
+        id="back-to-top-anchor"
       >
         <HeaderComponent />
         <Routes>
