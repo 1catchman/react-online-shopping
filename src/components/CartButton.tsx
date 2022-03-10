@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useAppSelector } from '../app/hooks';
+import { cartProducts, totalPrice } from '../features/cart/cartSlice';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -24,8 +26,12 @@ function a11yProps(index: number) {
 }
 
 export default function CartButtonComponent() {
+  const cart = useAppSelector(cartProducts);
+  const total = useAppSelector(totalPrice);
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+
+  console.log('Cart', cart);
 
   const handleChange = (
     event: React.SyntheticEvent,
@@ -52,6 +58,7 @@ export default function CartButtonComponent() {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
+
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <button style={{ border: 0, background: 'transparent' }}>
@@ -118,16 +125,54 @@ export default function CartButtonComponent() {
               index={value}
               onChangeIndex={handleChangeIndex}
             >
-              <CartTabPanelComponent
-                value={value}
-                index={0}
+              <div
+                role="tabpanel"
+                hidden={value !== 0}
+                id={`full-width-tabpanel-0`}
+                aria-labelledby={`full-width-tab-0`}
                 dir={theme.direction}
-              />
-              <CartTabPanelComponent
-                value={value}
-                index={1}
+              >
+                {value === 0 && cart.length > 0 ? (
+                  cart.map((item) => (
+                    <CartTabPanelComponent
+                      key={item.id}
+                      item={item}
+                    />
+                  ))
+                ) : (
+                  <PoppinsTypography
+                    gutterBottom
+                    variant="body1"
+                    sx={{ fontWeight: 400, p: 2 }}
+                  >
+                    No Products
+                  </PoppinsTypography>
+                )}
+              </div>
+              <div
+                role="tabpanel"
+                hidden={value !== 1}
+                id={`full-width-tabpanel-1`}
+                aria-labelledby={`full-width-tab-1`}
                 dir={theme.direction}
-              />
+              >
+                {value === 1 && cart.length > 0 ? (
+                  cart.map((item) => (
+                    <CartTabPanelComponent
+                      key={item.id}
+                      item={item}
+                    />
+                  ))
+                ) : (
+                  <PoppinsTypography
+                    gutterBottom
+                    variant="body1"
+                    sx={{ fontWeight: 400, p: 2 }}
+                  >
+                    No Products
+                  </PoppinsTypography>
+                )}
+              </div>
             </SwipeableViews>
             <Box sx={{ height: 54 }}></Box>
           </Paper>
@@ -148,7 +193,7 @@ export default function CartButtonComponent() {
                 variant="subtitle1"
                 sx={{ fontWeight: 600, m: 0, px: 2 }}
               >
-                Total: $280.00
+                Total: ${total}.00
               </PoppinsTypography>
             </Box>
             <Box>

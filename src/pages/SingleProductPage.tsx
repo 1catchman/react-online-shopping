@@ -16,6 +16,8 @@ import {
   ToggleButton
 } from '../components/CustomComponents';
 import { products } from '../data/products';
+import { useAppDispatch } from '../app/hooks';
+import { addProduct } from '../features/cart/cartSlice';
 
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import productsPageHeadingImage from '../images/products-page-heading.jpg';
@@ -31,6 +33,8 @@ const Img = styled('img')({
 export default function SingleProductPage() {
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
+
+  const dispatch = useAppDispatch();
 
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -211,7 +215,13 @@ export default function SingleProductPage() {
                 </PoppinsTypography>
               </Grid>
               <Grid item sx={{ display: 'flex' }}>
-                <CustomButton variant="outlined" color="black">
+                <CustomButton
+                  variant="outlined"
+                  color="black"
+                  onClick={() =>
+                    dispatch(addProduct(selectedProduct!))
+                  }
+                >
                   Add to Cart
                 </CustomButton>
               </Grid>

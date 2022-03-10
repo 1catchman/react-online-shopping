@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../app/hooks';
+import { addProduct } from '../features/cart/cartSlice';
 import {
   Box,
   Card,
@@ -52,6 +54,8 @@ const HoverBox = styled(Box)({
 });
 
 export default function ProductsItem({ props }: any) {
+  const dispatch = useAppDispatch();
+
   return (
     <Card
       sx={{ maxWidth: 350, borderRadius: 0, mx: 1 }}
@@ -67,7 +71,11 @@ export default function ProductsItem({ props }: any) {
           <CardButton area-label="favouriteproduct" size="small">
             <StarIcon />
           </CardButton>
-          <CardButton area-label="addproduct" size="small">
+          <CardButton
+            onClick={() => dispatch(addProduct(props))}
+            area-label="addproduct"
+            size="small"
+          >
             <ShoppingCartIcon />
           </CardButton>
         </HoverBox>
