@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.b9aa478e.css","mappings":"AAAA,KACE,sBACF,CAEA,KACE,QACF","sources":["index.css"],"sourcesContent":["html {\n  scroll-behavior: smooth;\n}\n\nbody {\n  margin: 0;\n}\n"],"names":[],"sourceRoot":""}
