@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   useMediaQuery,
   Stack,
@@ -16,8 +17,8 @@ import {
   ToggleButton
 } from '../components/CustomComponents';
 import { products } from '../data/products';
-import { useAppDispatch } from '../app/hooks';
-import { addProduct } from '../features/cart/cartSlice';
+import { useAppDispatch } from '../redux/hooks';
+import { addAmountProducts } from '../redux/cartSlice';
 
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import productsPageHeadingImage from '../images/products-page-heading.jpg';
@@ -31,6 +32,7 @@ const Img = styled('img')({
 });
 
 export default function SingleProductPage() {
+  const [count, setCount] = React.useState(1);
   const theme = useTheme();
   const lgBreakpointUp = useMediaQuery(theme.breakpoints.up('lg'));
 
@@ -41,6 +43,14 @@ export default function SingleProductPage() {
   const selectedProduct = products.find(
     (item) => item.id === Number(query.get('id'))
   );
+
+  const countIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const countDecrement = () => {
+    count > 1 && setCount(count - 1);
+  };
 
   return (
     <Box>
@@ -166,12 +176,13 @@ export default function SingleProductPage() {
                     borderRight: 0,
                     '&:hover': { borderRight: 0 }
                   }}
+                  onClick={countDecrement}
                 >
                   -
                 </ToggleButton>
                 <CustomInput
                   id="ordersvalue"
-                  defaultValue={1}
+                  value={count}
                   sx={{
                     width: 35,
                     height: 39,
@@ -181,7 +192,9 @@ export default function SingleProductPage() {
                     fontSize: 16,
                     borderColor: '#efefef',
                     minHeight: 39,
+                    cursor: 'default',
                     '& input': {
+                      cursor: 'default',
                       textAlign: 'center'
                     }
                   }}
@@ -192,6 +205,7 @@ export default function SingleProductPage() {
                     borderLeft: 0,
                     '&:hover': { borderLeft: 0 }
                   }}
+                  onClick={countIncrement}
                 >
                   +
                 </ToggleButton>
@@ -219,7 +233,13 @@ export default function SingleProductPage() {
                   variant="outlined"
                   color="black"
                   onClick={() =>
-                    dispatch(addProduct(selectedProduct!))
+                    dispatch(
+                      addAmountProducts(
+                        [...new Array(count)].map(
+                          () => selectedProduct!
+                        )
+                      )
+                    )
                   }
                 >
                   Add to Cart

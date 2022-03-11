@@ -12,7 +12,7 @@ import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
 import BasicMenu, { menuLinks } from './Menu';
 import ElevationScroll from './ElevationScroll';
-import CartButtonComponent from './CartButton';
+import CartPanelComponent from './CartPanel';
 
 import logo from '../images/logo.png';
 
@@ -71,7 +71,7 @@ export default function HeaderComponent() {
                     </RouterLink>
                   );
                 })}
-                <CartButtonComponent />
+                <CartPanelComponent />
               </NavBox>
             ) : (
               <>
@@ -83,7 +83,7 @@ export default function HeaderComponent() {
                     width: 35
                   }}
                 >
-                  <CartButtonComponent />
+                  <CartPanelComponent />
                 </Box>
                 <BasicMenu appBarRef={appBarElement} />
               </>

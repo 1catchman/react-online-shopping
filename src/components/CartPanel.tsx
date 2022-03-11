@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { useAppSelector } from '../app/hooks';
-import { cartProducts, totalPrice } from '../features/cart/cartSlice';
+import { useAppSelector } from '../redux/hooks';
+import { cartProducts, totalPrice } from '../redux/cartSlice';
+import { favoutireProducts } from '../redux/favouritesSlice';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -14,7 +15,8 @@ import {
   Badge
 } from '@mui/material/';
 import { PoppinsTypography, CustomButton } from './CustomComponents';
-import CartTabPanelComponent from './CartTabPanel';
+import CartTabItemComponent from './CartTabItem';
+import FavouritesTabItemComponent from './FavouritesTabItem';
 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
@@ -25,13 +27,14 @@ function a11yProps(index: number) {
   };
 }
 
-export default function CartButtonComponent() {
+export default function CartPanelComponent() {
   const cart = useAppSelector(cartProducts);
+  const favourites = useAppSelector(favoutireProducts);
   const total = useAppSelector(totalPrice);
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  console.log('Cart', cart);
+  console.log('favourites', favourites);
 
   const handleChange = (
     event: React.SyntheticEvent,
@@ -116,8 +119,8 @@ export default function CartButtonComponent() {
                 variant="fullWidth"
                 aria-label="full width tabs example"
               >
-                <Tab label="Item One" {...a11yProps(0)} />
-                <Tab label="Item Two" {...a11yProps(1)} />
+                <Tab label="Cart" {...a11yProps(0)} />
+                <Tab label="Favourites" {...a11yProps(1)} />
               </Tabs>
             </AppBar>
             <SwipeableViews
@@ -134,10 +137,7 @@ export default function CartButtonComponent() {
               >
                 {value === 0 && cart.length > 0 ? (
                   cart.map((item) => (
-                    <CartTabPanelComponent
-                      key={item.id}
-                      item={item}
-                    />
+                    <CartTabItemComponent key={item.id} item={item} />
                   ))
                 ) : (
                   <PoppinsTypography
@@ -156,9 +156,9 @@ export default function CartButtonComponent() {
                 aria-labelledby={`full-width-tab-1`}
                 dir={theme.direction}
               >
-                {value === 1 && cart.length > 0 ? (
-                  cart.map((item) => (
-                    <CartTabPanelComponent
+                {value === 1 && favourites.length > 0 ? (
+                  favourites.map((item) => (
+                    <FavouritesTabItemComponent
                       key={item.id}
                       item={item}
                     />

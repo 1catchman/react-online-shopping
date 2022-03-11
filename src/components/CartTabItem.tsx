@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useAppSelector, useAppDispatch } from '../app/hooks';
+import { useAppSelector, useAppDispatch } from '../redux/hooks';
 import {
   addProduct,
-  removeProduct
-} from '../features/cart/cartSlice';
-import { quantity } from '../features/cart/cartSlice';
+  removeProduct,
+  quantity
+} from '../redux/cartSlice';
 import { Box, Card, CardContent, CardMedia } from '@mui/material/';
 import {
   CustomInput,
@@ -17,10 +17,7 @@ interface TabPanelItem {
   item: ProductsProps;
 }
 
-export default function CartTabPanelComponent({
-  item
-}: TabPanelItem) {
-  const ref = React.useRef(null);
+export default function CartTabItemComponent({ item }: TabPanelItem) {
   const quantityProduct = useAppSelector(quantity);
   const [count, setCount] = React.useState(
     quantityProduct![item.id] || 1
@@ -45,7 +42,7 @@ export default function CartTabPanelComponent({
   };
 
   return (
-    <Card ref={ref} sx={{ display: state, p: 2 }} elevation={0}>
+    <Card sx={{ display: state, p: 2 }} elevation={0}>
       <CardMedia
         component="img"
         image={item.img}

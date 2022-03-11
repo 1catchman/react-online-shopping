@@ -17,7 +17,7 @@ export interface ProductsProps {
   category: string;
 }
 
-export const products = [
+export const products: ProductsProps[] = [
   {
     id: 1,
     title: 'Skylight Spring Shirt',
@@ -83,65 +83,65 @@ export const products = [
   },
   {
     id: 10,
-    title: 'Skylight Spring Shirt',
+    title: 'ProStar Red Shirt',
     img: firstManImage,
-    price: 80,
+    price: 140,
     category: 'man'
   },
   {
     id: 11,
-    title: 'Juniper Winter Jacket',
+    title: 'Skylight Spring Jacket',
     img: firstWomanImage,
-    price: 140,
+    price: 80,
     category: 'woman'
   },
   {
     id: 12,
-    title: 'ProStar Autumn Jacket',
+    title: 'Agenda Summer Jacket',
     img: secondWomanImage,
-    price: 40,
+    price: 60,
     category: 'woman'
   },
   {
     id: 13,
-    title: 'Agenda Summer Sweatshirt',
+    title: 'Juniper Autumn Sweatshirt',
     img: secondManImage,
-    price: 60,
+    price: 40,
     category: 'man'
   },
   {
     id: 14,
-    title: 'Safari Jogging Pants',
+    title: 'Vintage Blue Pants',
     img: firstKidImage,
-    price: 120,
+    price: 50,
     category: 'kid'
   },
   {
     id: 15,
-    title: 'Vintage Nitted Sweater',
+    title: 'Safari Winter Sweater',
     img: thirdWomanImage,
-    price: 90,
+    price: 120,
     category: 'woman'
   },
   {
     id: 16,
-    title: 'Juniper Summer Shorts',
+    title: 'ProStar Summer Shorts',
     img: secondKidImage,
-    price: 100,
+    price: 90,
     category: 'kid'
   },
   {
     id: 17,
-    title: 'ProStar Stripe Shirt',
+    title: 'Skylight Long Shirt',
     img: thirdManImage,
-    price: 50,
+    price: 100,
     category: 'man'
   },
   {
     id: 18,
-    title: 'Skylight Summer Pants',
+    title: 'Juniper Winter Pants',
     img: thirdKidImage,
-    price: 80,
+    price: 40,
     category: 'kid'
   }
 ];

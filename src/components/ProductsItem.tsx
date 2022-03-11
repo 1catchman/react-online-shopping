@@ -1,5 +1,6 @@
-import { useAppDispatch } from '../app/hooks';
-import { addProduct } from '../features/cart/cartSlice';
+import { useAppDispatch } from '../redux/hooks';
+import { addProduct } from '../redux/cartSlice';
+import { addFavouriteProduct } from '../redux/favouritesSlice';
 import {
   Box,
   Card,
@@ -68,7 +69,11 @@ export default function ProductsItem({ props }: any) {
               <VisibilityIcon />
             </CardButton>
           </RouterLink>
-          <CardButton area-label="favouriteproduct" size="small">
+          <CardButton
+            onClick={() => dispatch(addFavouriteProduct(props))}
+            area-label="favouriteproduct"
+            size="small"
+          >
             <StarIcon />
           </CardButton>
           <CardButton
