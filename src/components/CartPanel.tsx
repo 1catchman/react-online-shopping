@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { useAppSelector } from '../redux/hooks';
-import { cartProducts, totalPrice } from '../redux/cartSlice';
+import {
+  cartProducts,
+  quantity,
+  totalPrice
+} from '../redux/cartSlice';
 import { favoutireProducts } from '../redux/favouritesSlice';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
@@ -31,6 +35,7 @@ export default function CartPanelComponent() {
   const cart = useAppSelector(cartProducts);
   const favourites = useAppSelector(favoutireProducts);
   const total = useAppSelector(totalPrice);
+  const cartAmount = useAppSelector(quantity);
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -68,8 +73,8 @@ export default function CartPanelComponent() {
         <Badge
           aria-label="delete"
           aria-describedby={id}
+          badgeContent={cartAmount!.total || 0}
           onClick={handleClick}
-          variant="dot"
           color="error"
           sx={{
             cursor: 'pointer',
