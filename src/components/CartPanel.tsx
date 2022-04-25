@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks';
 import {
   cartProducts,
@@ -38,8 +39,6 @@ export default function CartPanelComponent() {
   const cartAmount = useAppSelector(quantity);
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-
-  console.log('favourites', favourites);
 
   const handleChange = (
     event: React.SyntheticEvent,
@@ -202,18 +201,25 @@ export default function CartPanelComponent() {
               </PoppinsTypography>
             </Box>
             <Box>
-              <CustomButton
-                color="black"
-                sx={{ backgroundColor: '#2a2a2a' }}
-              >
-                <PoppinsTypography
-                  gutterBottom
-                  variant="subtitle1"
-                  sx={{ fontWeight: 600, m: 0, px: 2, color: '#fff' }}
+              <Link to="/checkout">
+                <CustomButton
+                  color="black"
+                  sx={{ backgroundColor: '#2a2a2a' }}
                 >
-                  Buy
-                </PoppinsTypography>
-              </CustomButton>
+                  <PoppinsTypography
+                    gutterBottom
+                    variant="subtitle1"
+                    sx={{
+                      fontWeight: 600,
+                      m: 0,
+                      px: 2,
+                      color: '#fff'
+                    }}
+                  >
+                    Buy
+                  </PoppinsTypography>
+                </CustomButton>
+              </Link>
             </Box>
           </Paper>
         </Popper>

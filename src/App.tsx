@@ -13,6 +13,7 @@ import AboutPage from './pages/AboutPage';
 import ProductsPage from './pages/ProductsPage';
 import SingleProductPage from './pages/SingleProductPage';
 import ContactPage from './pages/ContactPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product" element={<SingleProductPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
         <FooterComponent />
       </Container>

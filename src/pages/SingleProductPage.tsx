@@ -225,7 +225,7 @@ export default function SingleProductPage() {
                   color="#a1a1a1"
                   sx={{ fontWeight: 600, mb: 0 }}
                 >
-                  Total: $
+                  Total: ${selectedProduct!.price * count}.00
                 </PoppinsTypography>
               </Grid>
               <Grid item sx={{ display: 'flex' }}>
