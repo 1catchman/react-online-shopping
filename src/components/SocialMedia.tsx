@@ -84,8 +84,8 @@ export default function SocialMediaComponent() {
           color="#a1a1a1"
           fontStyle="italic"
         >
-          Details to details is what makes Hexashop different from the
-          other themes.
+          Details to details is what makes Glamshopz different from
+          the other themes.
         </PoppinsTypography>
         <ImageList
           sx={{ width: '100%', mt: 6 }}

@@ -45,7 +45,7 @@ export default function FooterComponent() {
                   United States
                 </PoppinsTypography>
                 <PoppinsTypography sx={{ color: 'white' }}>
-                  hexashop@company.com
+                  glamshopz@company.com
                 </PoppinsTypography>
                 <PoppinsTypography sx={{ color: 'white' }}>
                   010-020-0340
@@ -114,7 +114,7 @@ export default function FooterComponent() {
               variant="subtitle1"
               sx={{ color: 'white' }}
             >
-              Copyright &copy; 2022 HexaShop Co., Ltd. All Rights
+              Copyright &copy; 2022 Glamshopz Co., Ltd. All Rights
               Reserved.
             </PoppinsTypography>
             <PoppinsTypography

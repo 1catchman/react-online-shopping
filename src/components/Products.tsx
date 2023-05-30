@@ -71,7 +71,7 @@ export default function ProductsComponent() {
             color="#a1a1a1"
             fontStyle="italic"
           >
-            Details to details is what makes Hexashop different from
+            Details to details is what makes Glamshopz different from
             the other themes.
           </PoppinsTypography>
         </Box>
@@ -109,7 +109,7 @@ export default function ProductsComponent() {
             color="#a1a1a1"
             fontStyle="italic"
           >
-            Details to details is what makes Hexashop different from
+            Details to details is what makes Glamshopz different from
             the other themes.
           </PoppinsTypography>
         </Box>
@@ -147,7 +147,7 @@ export default function ProductsComponent() {
             color="#a1a1a1"
             fontStyle="italic"
           >
-            Details to details is what makes Hexashop different from
+            Details to details is what makes Glamshopz different from
             the other themes.
           </PoppinsTypography>
         </Box>
@@ -195,7 +195,7 @@ export default function ProductsComponent() {
               color="#a1a1a1"
               mt={3}
             >
-              You are allowed to use this HexaShop HTML CSS template.
+              You are allowed to use this Glamshopz HTML CSS template.
               You can feel free to modify or edit this layout. You can
               convert this template as any kind of ecommerce CMS theme
               as you wish.
@@ -221,10 +221,10 @@ export default function ProductsComponent() {
               color="#a1a1a1"
               mt={3}
             >
-              There are 5 pages included in this HexaShop Template and
-              we are providing it to you for absolutely free of charge
-              at our TemplateMo website. There are web development
-              costs for us.
+              There are 5 pages included in this Glamshopz Template
+              and we are providing it to you for absolutely free of
+              charge at our TemplateMo website. There are web
+              development costs for us.
             </PoppinsTypography>
             <PoppinsTypography
               variant="subtitle1"

@@ -116,7 +116,7 @@ export default function ContactPage() {
                 color="#a1a1a1"
                 fontStyle="italic"
               >
-                Details to details is what makes Hexashop different
+                Details to details is what makes Glamshopz different
                 from the other themes.
               </PoppinsTypography>
             </Box>

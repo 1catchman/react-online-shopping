@@ -112,7 +112,7 @@ export default function BannersComponent() {
               variant="h2"
               sx={{ fontWeight: 700 }}
             >
-              We Are Hexashop
+              We Are Glamshopz
             </PoppinsTypography>
             <PoppinsTypography
               variant="subtitle1"
